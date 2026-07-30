@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:transparent_image/transparent_image.dart';
 import 'package:meal_menu_app/widgets/meal_item_trait.dart';
+import 'package:meal_menu_app/data/fallback_image.dart';
 import 'package:meal_menu_app/models/meal.dart';
 
 class MealItem extends StatelessWidget {
@@ -40,9 +40,14 @@ class MealItem extends StatelessWidget {
           children: [
             Hero(
               tag: meal.id,
-              child: FadeInImage(
-                placeholder: MemoryImage(kTransparentImage),
-                image: NetworkImage(meal.imageUrl),
+              child: FallbackImage(
+                imageUrl: meal.imageUrl,
+                // meal.id is 'm1', 'm2', … which maps directly to the
+                // bundled asset filenames (image1.jpg, image2.jpg, …).
+                // This works regardless of whether meal.imageUrl is a real
+                // network URL or a local asset path.
+                assetPath:
+                'assets/images/image${meal.id.substring(1)}.jpg',
                 fit: BoxFit.cover,
                 height: 200,
                 width: double.infinity,

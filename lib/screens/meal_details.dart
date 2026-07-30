@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:meal_menu_app/data/fallback_image.dart';
 import 'package:meal_menu_app/models/meal.dart';
 import 'package:meal_menu_app/provider/favorites_provider.dart';
 
@@ -54,8 +55,14 @@ class MealDetailsScreen extends ConsumerWidget {
           children: [
             Hero(
               tag: meal.id,
-              child: Image.network(
-                meal.imageUrl,
+              child: FallbackImage(
+                imageUrl: meal.imageUrl,
+                // meal.id is 'm1', 'm2', ... which maps directly to the
+                // bundled asset filenames (image1.jpg, image2.jpg, …).
+                // This works regardless of whether meal.imageUrl is a real
+                // network URL or a local asset path.
+                assetPath:
+                'assets/images/image${meal.id.substring(1)}.jpg',
                 height: 300,
                 width: double.infinity,
                 fit: BoxFit.cover,
@@ -65,25 +72,25 @@ class MealDetailsScreen extends ConsumerWidget {
             Text(
               'Ingredients',
               style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                    color: Theme.of(context).colorScheme.onError,
-                    fontWeight: FontWeight.bold,
-                  ),
+                color: Theme.of(context).colorScheme.onError,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             const SizedBox(height: 14),
             for (final ingredient in meal.ingredients)
               Text(
                 ingredient,
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      color: Theme.of(context).colorScheme.onSecondaryContainer,
-                    ),
+                  color: Theme.of(context).colorScheme.onSecondaryContainer,
+                ),
               ),
             const SizedBox(height: 24),
             Text(
               'Steps',
               style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                    color: Theme.of(context).colorScheme.onError,
-                    fontWeight: FontWeight.bold,
-                  ),
+                color: Theme.of(context).colorScheme.onError,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             const SizedBox(height: 14),
             for (final step in meal.steps)
@@ -96,9 +103,9 @@ class MealDetailsScreen extends ConsumerWidget {
                   step,
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color:
-                            Theme.of(context).colorScheme.onSecondaryContainer,
-                      ),
+                    color:
+                    Theme.of(context).colorScheme.onSecondaryContainer,
+                  ),
                 ),
               ),
           ],

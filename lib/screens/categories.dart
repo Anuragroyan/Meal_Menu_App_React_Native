@@ -79,8 +79,8 @@ class _CategoriesScreenState extends State<CategoriesScreen>
         ],
       ),
       // builder: (context, child) => Padding(
-      //     padding: EdgeInsets.only(
-      //       top: 100 - _animationController.value * 100,
+      //     padding: EdgeInsets.Only(
+      //       top: 100 - _animationController.Value * 100,
       //     ),
       //     child: child),
       builder: (context, child) => SlideTransition(
