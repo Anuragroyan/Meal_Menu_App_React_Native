@@ -1,4 +1,6 @@
-# 🍽️ Meal Discovery App is a Flutter app that helps users discover meals through images, categories, and preferences. It uses Flutter Riverpod for efficient state management and follows a clean, organized architecture for a smooth user experience.
+# 🍽️ Meal Discovery App 
+
+# Meal Discovery App is a Flutter app that helps users discover meals through images, categories, and preferences. It uses Flutter Riverpod for efficient state management and follows a clean, organized architecture for a smooth user experience.
 
 # ScreenShots
 
